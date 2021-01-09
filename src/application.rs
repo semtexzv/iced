@@ -192,17 +192,7 @@ pub trait Application: Sized {
     {
         #[cfg(not(target_arch = "wasm32"))]
         {
-            let renderer_settings = crate::renderer::Settings {
-                default_font: settings.default_font,
-                default_text_size: settings.default_text_size,
-                antialiasing: if settings.antialiasing {
-                    Some(crate::renderer::settings::Antialiasing::MSAAx4)
-                } else {
-                    None
-                },
-                ..crate::renderer::Settings::default()
-            };
-
+            let renderer_settings = settings.renderer.clone();
             Ok(crate::runtime::application::run::<
                 Instance<Self>,
                 Self::Executor,

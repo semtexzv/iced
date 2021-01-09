@@ -14,27 +14,9 @@ pub struct Settings<Flags> {
     /// [`Application`]: crate::Application
     pub flags: Flags,
 
-    /// The bytes of the font that will be used by default.
-    ///
-    /// If `None` is provided, a default system font will be chosen.
-    // TODO: Add `name` for web compatibility
-    pub default_font: Option<&'static [u8]>,
+    /// Renderer specific settings
+    pub renderer: crate::renderer::Settings,
 
-    /// The text size that will be used by default.
-    ///
-    /// The default value is 20.
-    pub default_text_size: u16,
-
-    /// If set to true, the renderer will try to perform antialiasing for some
-    /// primitives.
-    ///
-    /// Enabling it can produce a smoother result in some widgets, like the
-    /// [`Canvas`], at a performance cost.
-    ///
-    /// By default, it is disabled.
-    ///
-    /// [`Canvas`]: crate::widget::Canvas
-    pub antialiasing: bool,
 }
 
 impl<Flags> Settings<Flags> {
@@ -46,25 +28,21 @@ impl<Flags> Settings<Flags> {
 
         Self {
             flags,
-            antialiasing: default_settings.antialiasing,
-            default_font: default_settings.default_font,
-            default_text_size: default_settings.default_text_size,
             window: default_settings.window,
+            renderer: default_settings.renderer,
         }
     }
 }
 
 impl<Flags> Default for Settings<Flags>
-where
-    Flags: Default,
+    where
+        Flags: Default,
 {
     fn default() -> Self {
         Self {
             flags: Default::default(),
-            antialiasing: Default::default(),
-            default_font: Default::default(),
-            default_text_size: 20,
             window: Default::default(),
+            renderer: Default::default(),
         }
     }
 }

@@ -12,7 +12,7 @@ keywords = ["gui", "ui", "graphics", "interface", "widgets"]
 categories = ["gui"]
 
 [features]
-default = ["wgpu", "default_system_font"]
+default = ["wgpu"]
 # Enables the `iced_wgpu` renderer
 wgpu = ["iced_wgpu"]
 # Enables the `Image` widget

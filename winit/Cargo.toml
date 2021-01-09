@@ -14,7 +14,7 @@ categories = ["gui"]
 debug = ["iced_native/debug"]
 
 [dependencies]
-winit = "0.24"
+winit = {  path = "../../winit" }#git = "https://github.com/semtexzv/winit", branch = "android-redraw" }
 window_clipboard = "0.1"
 log = "0.4"
 thiserror = "1.0"
